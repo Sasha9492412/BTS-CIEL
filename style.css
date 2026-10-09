@@ -1,0 +1,76 @@
+
+/* En-tête du CV */
+header {
+    text-align: right;
+    color: white;
+    background-image: url("image/header.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+/* Mise en forme générale de la page */
+body {
+    margin: 0;
+    background-color: lightgray;
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 0.9rem;
+}
+
+/* Zone principale */
+section {
+    margin: 0;
+    position: relative;
+    height: 50vh;
+    width: 60vw;
+}
+
+/* Zone secondaire à droite */
+aside {
+    position: relative;
+    margin-left: 60vw;
+    margin-top: -50vh;
+    height: 40%;
+}
+/* Bordure grise autour des blocs */
+.border1 {
+    border: 1px solid gray;
+}
+
+
+/* Barre de navigation */
+nav {
+    text-align: left;
+    height: 2%;
+    width: 100%;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+nav li {
+    display: inline-block;
+    width: 10%;
+}
+
+nav li a {
+    color: black;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    font-weight: bold;
+}
+
+/* --- Footer --- */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    background-color: #060325;
+    text-align: center;
+}
