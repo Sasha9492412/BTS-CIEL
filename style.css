@@ -1,76 +1,301 @@
-
-/* En-tête du CV */
-header {
-    text-align: right;
-    color: white;
-    background-image: url("image/header.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% auto;
+/* ===== Thème Five Nights at Freddy's ===== */
+:root {
+    --fond: #0b0907;          /* pizzeria la nuit */
+    --carte: #1b1410;         /* brun Freddy très sombre */
+    --texte: #eadfca;
+    --texte-doux: #b8a98e;
+    --principal: #000000;
+    --accent: #e0a526;        /* or de Golden Freddy / Chica */
+    --accent-clair: #2b2014;
+    --rouge: #c1121f;         /* yeux rouges des animatroniques */
+    --violet: #6a2c91;        /* Purple Guy / Springtrap */
+    --bord: #3a2a18;
+    --police-titre: "Courier New", Courier, monospace;
+    --ombre: 0 4px 18px rgba(0, 0, 0, 0.85);
 }
 
-/* Mise en forme générale de la page */
+/* ===== Page ===== */
+html {
+    background-color: var(--fond);
+    scroll-behavior: smooth;
+}
+
+/* Lignes de balayage façon caméra de sécurité */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0,
+        rgba(0, 0, 0, 0) 2px,
+        rgba(0, 0, 0, 0.18) 3px
+    );
+}
+
 body {
-    margin: 0;
-    background-color: lightgray;
-    font-family: Arial, Verdana, sans-serif;
-    font-size: 0.9rem;
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 20px 20px 90px; /* place pour le footer fixe */
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--texte);
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        "entete entete"
+        "menu   menu"
+        "centre cote";
+    gap: 20px;
 }
 
-/* Zone principale */
-section {
-    margin: 0;
-    position: relative;
-    height: 50vh;
-    width: 60vw;
-}
-
-/* Zone secondaire à droite */
-aside {
-    position: relative;
-    margin-left: 60vw;
-    margin-top: -50vh;
-    height: 40%;
-}
-/* Bordure grise autour des blocs */
 .border1 {
-    border: 1px solid gray;
+    border: none;
 }
 
+/* ===== En-tête ===== */
+header {
+    grid-area: entete;
+    text-align: right;
+    color: var(--texte);
+    padding: 40px 35px;
+    border-radius: 6px;
+    border-bottom: 3px solid var(--rouge);
+    box-shadow: var(--ombre), inset 0 0 60px rgba(193, 18, 31, 0.25);
+    background-color: var(--principal);
+    background-image:
+        linear-gradient(to left, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.15) 70%),
+        url("image/25165903-4sk7srqh-v5.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 
-/* Barre de navigation */
+header h1 {
+    margin: 0 0 10px;
+    font-family: var(--police-titre);
+    font-size: 2.6rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-shadow: 0 0 12px rgba(193, 18, 31, 0.9);
+}
+
+header address {
+    font-style: normal;
+    color: var(--texte-doux);
+}
+
+header p {
+    margin: 10px 0 0;
+}
+
+header a {
+    color: var(--texte);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+header a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+}
+
+/* ===== Navigation ===== */
 nav {
-    text-align: left;
-    height: 2%;
-    width: 100%;
+    grid-area: menu;
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+    background-color: var(--principal);
+    border: 1px solid var(--bord);
+    border-radius: 6px;
+    box-shadow: var(--ombre);
+    padding: 6px 10px;
 }
 
 nav ul {
-    padding: 0;
     margin: 0;
-    list-style-type: none;
-}
-
-nav li {
-    display: inline-block;
-    width: 10%;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 nav li a {
-    color: black;
+    display: block;
+    padding: 8px 22px;
+    border-radius: 4px;
+    color: var(--accent);
     text-decoration: none;
+    font-family: var(--police-titre);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
 nav li a:hover {
-    font-weight: bold;
+    background-color: var(--rouge);
+    color: white;
+    box-shadow: 0 0 12px var(--rouge);
 }
 
-/* --- Footer --- */
+/* ===== Zones principale et secondaire ===== */
+section {
+    grid-area: centre;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+aside {
+    grid-area: cote;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===== Titres et texte ===== */
+section h2 {
+    margin: 0;
+    font-family: var(--police-titre);
+    color: var(--accent);
+    font-size: 1.5rem;
+    line-height: 1.3;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(193, 18, 31, 0.9);
+}
+
+section > p {
+    margin: 0;
+    padding: 18px 22px;
+    background-color: var(--accent-clair);
+    border-left: 5px solid var(--rouge);
+    border-radius: 4px;
+    color: var(--texte);
+}
+
+/* ===== Cartes ===== */
+article {
+    background-color: var(--carte);
+    border: 1px solid var(--bord);
+    border-top: 4px solid var(--rouge);
+    border-radius: 6px;
+    box-shadow: var(--ombre);
+    padding: 20px 24px;
+    scroll-margin-top: 80px;
+}
+
+article h3 {
+    margin: 0 0 12px;
+    font-family: var(--police-titre);
+    color: var(--accent);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+article ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+article li {
+    margin-bottom: 8px;
+}
+
+article li::marker {
+    color: var(--rouge);
+}
+
+/* ===== Compétences ===== */
+dt {
+    font-weight: 700;
+    color: var(--texte);
+    margin-top: 10px;
+}
+
+dd {
+    margin: 2px 0 0;
+    color: var(--texte-doux);
+}
+
+/* ===== Loisirs : étiquettes ===== */
+#loisirs ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+#loisirs li {
+    margin: 0;
+    padding: 4px 14px;
+    background-color: var(--accent-clair);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ===== Pied de page ===== */
 footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    color: white;
-    background-color: #060325;
-    text-align: center;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    background-color: var(--principal);
+    border-top: 2px solid var(--rouge);
+    color: var(--texte-doux);
+    font-family: var(--police-titre);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    z-index: 20;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer img {
+    display: block;
+    transition: transform 0.2s;
+}
+
+footer img:hover {
+    transform: scale(1.15);
+}
+
+/* ===== Petits écrans ===== */
+@media (max-width: 800px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "entete"
+            "menu"
+            "centre"
+            "cote";
+    }
+
+    header {
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
 }
